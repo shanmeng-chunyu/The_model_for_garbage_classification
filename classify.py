@@ -37,9 +37,9 @@ def classify(args):
     num_classes = len(class_names)
     transform = ImagePreprocessor([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     #加载模型
-    net = models.resnet50().to(device)
-    num_ftrs = net.fc.in_features
-    net.fc = nn.Linear(num_ftrs, num_classes)
+    net = models.vit_b_16()
+    num_head = net.heads.head.in_features
+    net.heads.head = nn.Linear(num_head, num_classes)
     net.to(device)
     net.load_state_dict(torch.load(args.model_path, map_location=device))
     net.eval()
@@ -68,7 +68,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", default="./image", type=str,help='需要分类的图片所在目录')
     parser.add_argument('--output_dir', default='./run/classify/exp', type=str,help='分类结果保存目录')
-    parser.add_argument('--model_path', default='./run/train/exp_best/best_model.pth', type=str, help='模型所在目录')
+    parser.add_argument('--model_path', default='./run/train/exp_ViT3.0_best_highlr/best_model.pth', type=str,
+                        help='模型所在目录')
     parser.add_argument('--class_file',default='./class_name.txt',type=str,help='分类标签所在文件')
     args = parser.parse_args()
     classify(args)
