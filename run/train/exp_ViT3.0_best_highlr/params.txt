@@ -1,0 +1,7 @@
+Epoch:100
+num_workers:16
+batch_size:256
+lr:5e-05
+early_stopping:15
+Trainning Time:2297.2344
+Trainning Epoch:0

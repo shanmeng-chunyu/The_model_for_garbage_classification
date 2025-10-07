@@ -1,10 +1,12 @@
 import argparse
 import os
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from PIL import Image
 import torchvision.models as models
+from PIL import Image
+
 from data_process import ImagePreprocessor
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -66,7 +68,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", default="./image", type=str,help='需要分类的图片所在目录')
     parser.add_argument('--output_dir', default='./run/classify/exp', type=str,help='分类结果保存目录')
-    parser.add_argument('--model_path',default='./run/train/exp_best/best_model.pth',type=str,help='模型所在目录')
+    parser.add_argument('--model_path', default='./run/train/exp_best/best_model.pth', type=str, help='模型所在目录')
     parser.add_argument('--class_file',default='./class_name.txt',type=str,help='分类标签所在文件')
     args = parser.parse_args()
     classify(args)

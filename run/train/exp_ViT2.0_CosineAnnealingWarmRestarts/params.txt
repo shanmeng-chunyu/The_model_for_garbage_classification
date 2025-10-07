@@ -1,0 +1,4 @@
+Epoch:100
+num_workers:16
+batch_size:256
+lr:1e-05

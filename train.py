@@ -1,20 +1,19 @@
 import argparse
+import os
 import time
 
 import torch
-import torch.optim as optim
-import os
 import torch.nn as nn
-from torch.optim.lr_scheduler import CosineAnnealingLR, StepLR
+import torch.optim as optim
+import torchvision.models as models
+from torch.cuda.amp import GradScaler, autocast
+from torch.optim.lr_scheduler import CosineAnnealingLR
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
-from torch.cuda.amp import GradScaler, autocast
-
-import torchvision.models as models
 from torchvision.models import ViT_B_16_Weights
 
-from data_process import ImagePreprocessor
 from data_process import ImageAugmentor
+from data_process import ImagePreprocessor
 from dataset import Dataset
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -84,7 +83,7 @@ def main(args):
         {'params': base_params, 'lr': args.lr},
         {'params': head_params, 'lr': args.lr * 10}
     ], weight_decay=1e-4)
-    scheduler = CosineAnnealingLR(optimizer,T_max=args.epochs,eta_min=1e-6)
+    scheduler = CosineAnnealingLR(optimizer, T_max=args.epochs, eta_min=1e-6)
     # 初始化 GradScaler
     scaler = GradScaler()
     # 开始训练
