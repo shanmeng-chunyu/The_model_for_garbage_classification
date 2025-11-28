@@ -1,3 +1,11 @@
-/run/train/exp_ViT2.0_CosineAnnealingWarmRestarts/best_model.pth
-/run/train/exp_ViT3.0_best_highlr/best_model.pth
-/run/train/exp_ViT1.0/best_model.pth
+run/
+DATASET/
+LLaMA-Factory/
+.vscode/
+best_model.pth
+*.pth
+*.safetensors
+*.bin
+saves/
+*.json
+judged_results.csv
