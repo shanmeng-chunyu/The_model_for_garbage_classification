@@ -5,10 +5,10 @@ import random
 # ================= 配置区域 =================
 
 # 1. 图片数据的根目录 (保持你之前的路径)
-TRAIN_DIR = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\DATASET\train"
+TRAIN_DIR = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\DATASET\test"
 
 # 2. 输出的数据集文件名
-OUTPUT_FILE = "garbage_structured_dataset.json"
+OUTPUT_FILE = "garbage_structured_dataset_test.json"
 
 # ===========================================
 
