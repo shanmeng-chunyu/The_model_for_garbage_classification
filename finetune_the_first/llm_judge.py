@@ -6,13 +6,15 @@ from tqdm import tqdm
 
 # ================= 配置区域 =================
 
-input_file = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\LLaMA-Factory\saves\Qwen2-VL-2B-Instruct\lora\eval_results_finetune_structed_test\generated_predictions.jsonl"
-output_file = "finetune_judged_results.csv"
+input_file = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\LLaMA-Factory\saves\Qwen2-VL-2B-Instruct\lora\eval_results\generated_predictions.jsonl"
+output_file = "judged_results.csv"
 
+# API 配置 (DeepSeek)
 API_KEY = "sk-ff73ef6e14ff49938293f25e7d203228" 
 BASE_URL = "https://api.deepseek.com"
 MODEL_NAME = "deepseek-chat"
 
+# 设置为 None 跑全量，设置为数字跑测试
 TEST_LIMIT = None 
 
 # ===========================================
@@ -53,6 +55,7 @@ def get_processed_count(filename):
     if not os.path.exists(filename):
         return 0
     with open(filename, 'r', encoding='utf-8-sig') as f:
+    
         return sum(1 for row in f) - 1
 
 def main():
@@ -60,7 +63,7 @@ def main():
         print("错误：找不到输入文件！")
         return
 
-
+    
     with open(input_file, 'r', encoding='utf-8-sig') as f: 
         all_lines = f.readlines()
 
@@ -79,17 +82,17 @@ def main():
     print(f"总任务: {total_lines} 条 | 已完成: {processed_count} 条 | 剩余: {total_lines - processed_count} 条")
     print(f"🚀 开始断点续传...\n")
 
+    
     file_exists = os.path.exists(output_file)
     
     with open(output_file, 'a', newline='', encoding='utf-8-sig') as csvfile:
         fieldnames = ["行号", "标签", "预测", "判定"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         
-
         if not file_exists or os.path.getsize(output_file) == 0:
             writer.writeheader()
 
-    
+        
         for i in tqdm(range(processed_count, total_lines), desc="评估进度"):
             line = all_lines[i].strip()
             if not line: continue
@@ -98,12 +101,15 @@ def main():
             label = data.get('label', '')
             predict = data.get('predict', '')
             
+        
             is_correct = check_answer_with_llm(label, predict)
             
         
             clean_label = label.replace("\n", "").replace("\r", "").strip()
             clean_predict = predict.replace("\n", " ").replace("\r", " ").strip()
             # ------------------------------------
+
+        
             writer.writerow({
                 "行号": i + 1,
                 "标签": clean_label,   
