@@ -1,7 +1,8 @@
 import csv
 import os
 
-csv_file = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\finetune_the_forth\finetune_judged_results.csv"
+# 结果文件的路径
+csv_file = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\judged_results.csv"
 
 def calculate():
     if not os.path.exists(csv_file):
@@ -22,7 +23,7 @@ def calculate():
         
             total += 1
             
-
+            
             if result == "1" or "正确" in result:
                 correct += 1
 
