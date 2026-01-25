@@ -1,12 +1,10 @@
 import json
 import os
 
-# ---------------- 配置区域 ----------------
-# 1. 这里填你那个 .json 文件的完整路径
-# (注意：如果是 LLaMA-Factory 生成的，文件名通常叫 generated_predictions.jsonl)
+
 json_file_path = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\LLaMA-Factory\saves\Qwen2-VL-2B-Instruct\lora\eval_results\generated_predictions.jsonl"
 
-# 2. 你想把提取结果保存到哪里？(可选，如果不填就只在屏幕打印)
+
 output_csv_path = "extracted_results.csv" 
 # ------------------------------------------
 
