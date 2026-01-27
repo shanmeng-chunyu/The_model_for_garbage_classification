@@ -3,6 +3,7 @@ import os
 
 csv_file = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\finetune_the_forth\finetune_judged_results.csv"
 
+
 def calculate():
     if not os.path.exists(csv_file):
         print("❌ 找不到结果文件，请先运行评估脚本。")
@@ -15,13 +16,11 @@ def calculate():
 
     with open(csv_file, 'r', encoding='utf-8-sig') as f:
         reader = csv.DictReader(f)
-        
+
         for row in reader:
             result = row.get("判定", "").strip()
-            
-        
+
             total += 1
-            
 
             if result == "1" or "正确" in result:
                 correct += 1
@@ -41,6 +40,7 @@ def calculate():
     print("-" * 30)
     print(f"🏆 最终准确率: {accuracy:.2f}%")
     print("=" * 30)
+
 
 if __name__ == "__main__":
     calculate()

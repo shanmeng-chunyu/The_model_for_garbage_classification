@@ -1,6 +1,6 @@
-import os
 import json
-import random  
+import os
+import random
 
 # ================= 配置区域 =================
 
@@ -11,7 +11,8 @@ OUTPUT_FILE = "garbage_dataset_test.json"
 
 PROMPT = "<image>\n请仔细观察这张图片，分析图中物品的特征，并判断它属于哪种垃圾分类。"
 
-random.seed(42) 
+random.seed(42)
+
 
 # ===========================================
 
@@ -21,18 +22,16 @@ def create_cot_dataset():
         return
 
     print(f"正在扫描目录: {TRAIN_DIR} ...")
-    
+
     dataset_data = []
     valid_extensions = {'.jpg', '.jpeg', '.png', '.bmp', '.webp'}
-    
 
     for root, dirs, files in os.walk(TRAIN_DIR):
         class_name = os.path.basename(root)
-        
+
         if root == TRAIN_DIR:
             continue
 
-        
         if "_" in class_name:
             main_category, item_name = class_name.split("_", 1)
         else:
@@ -51,7 +50,7 @@ def create_cot_dataset():
             if os.path.splitext(file)[1].lower() in valid_extensions:
                 abs_image_path = os.path.join(root, file)
                 abs_image_path = abs_image_path.replace("\\", "/")
-                
+
                 entry = {
                     "image": abs_image_path,
                     "conversations": [
@@ -65,33 +64,32 @@ def create_cot_dataset():
                         }
                     ]
                 }
-                
+
                 dataset_data.append(entry)
 
-    
     print(f"📊 原始数据生成完毕，共 {len(dataset_data)} 条。")
     print("🔀 正在彻底打乱数据集顺序...")
-    
-    random.shuffle(dataset_data)  
-    
+
+    random.shuffle(dataset_data)
+
     print("✅ 打乱完成。")
-    
+
     if dataset_data:
         with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
             json.dump(dataset_data, f, ensure_ascii=False, indent=2)
-        
+
         print(f"\n🎉 成功生成并打乱 CoT 数据集！")
         print(f"📁 文件已保存为: {os.path.abspath(OUTPUT_FILE)}")
-        
-   
+
         print("-" * 30)
         print("👀 乱序预览 (前3条):")
         for i in range(min(3, len(dataset_data))):
-            print(f"[{i+1}] {dataset_data[i]['conversations'][1]['value']}")
+            print(f"[{i + 1}] {dataset_data[i]['conversations'][1]['value']}")
         print("-" * 30)
         print("👉 下一步：请将此文件复制到 LLaMA-Factory/data 文件夹中覆盖原文件。")
     else:
         print("⚠️ 警告: 没有找到任何图片。")
+
 
 if __name__ == "__main__":
     create_cot_dataset()
