@@ -8,6 +8,7 @@ from tqdm import tqdm
 # ================= 配置区域 =================
 
 input_file = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\LLaMA-Factory\saves\Qwen2-VL-2B-Instruct\lora\eval_results\generated_predictions.jsonl"
+#注意，上述路径是空的，因为对应的.jsonl文件太大了所以没有上传
 output_file = "judged_results.csv"
 
 # API 配置 (DeepSeek)

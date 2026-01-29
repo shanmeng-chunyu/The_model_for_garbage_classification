@@ -1,8 +1,8 @@
-# 1. (关键!) 设置镜像源，防止下载时网络超时
+
 $env:HF_HUB_ENDPOINT = "https://hf-mirror.com"
 $env:HF_ENDPOINT = "https://hf-mirror.com"
 
-# 2. 运行评估 (使用 train 命令)
+
 llamafactory-cli train `
     --stage sft `
     --resume_from_checkpoint saves\Qwen2-VL-2B-Instruct\lora\garbage_structed_finetune\checkpoint-5800 `

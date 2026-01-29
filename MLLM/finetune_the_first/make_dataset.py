@@ -2,7 +2,7 @@ import json
 import os
 import random
 
-ROOT_DIR = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\DATASET\test"
+ROOT_DIR = r"The_model_for_garbage_classification\DATASET\test"
 
 OUTPUT_FILE = "garbage_dataset——test.json"
 
