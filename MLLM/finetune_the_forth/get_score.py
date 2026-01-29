@@ -1,7 +1,7 @@
 import csv
 import os
 
-csv_file = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\finetune_the_forth\finetune_judged_results.csv"
+csv_file = r"MLLM\finetune_the_forth\finetune_judged_results.csv"
 
 
 def calculate():

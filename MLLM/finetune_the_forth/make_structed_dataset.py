@@ -5,7 +5,7 @@ import random
 # ================= 配置区域 =================
 
 
-TRAIN_DIR = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\DATASET\test"
+TRAIN_DIR = r"The_model_for_garbage_classification\DATASET\test"
 
 OUTPUT_FILE = "garbage_structured_dataset_test.json"
 

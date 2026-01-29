@@ -2,7 +2,7 @@ import csv
 import os
 
 # 结果文件的路径
-csv_file = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\judged_results.csv"
+csv_file = r"finetune_the_first\judged_results.csv"
 
 
 def calculate():

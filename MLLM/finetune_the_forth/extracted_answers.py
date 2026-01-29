@@ -2,7 +2,7 @@ import json
 import os
 
 json_file_path = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\LLaMA-Factory\saves\Qwen2-VL-2B-Instruct\lora\eval_results_finetune_structed_test\generated_predictions.jsonl"
-
+#注意，上述路径是空的，因为对应的.jsonl文件太大了所以没有上传
 output_csv_path = "finetune_extracted_results.csv"
 
 

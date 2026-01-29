@@ -6,7 +6,7 @@ import random
 
 # 1. 图片数据的根目录
 # 如果脚本就在图片文件夹里，用 "." 即可
-ROOT_DIR = r"C:\Users\21048\Desktop\The_model_for_garbage_classification\DATASET\test"
+ROOT_DIR = r"The_model_for_garbage_classification\DATASET\test"
 
 # 2. 输出的 json 文件名
 OUTPUT_FILE = "garbage_dataset——test.json"
